@@ -1,0 +1,112 @@
+<div class="container"
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutAlign="center center">
+    <div fxFlex="30%">
+        <img src="../assets/pizza1.png"
+             class="card-img-top">
+        <div class="detail-container"
+             *ngIf="selectedPizza !== undefined">
+            <div>
+                {{selectedPizza.name}}
+            </div>
+            <div>
+                Price: {{selectedPizza.price}}
+            </div>
+        </div>
+    </div>
+    <div fxFlex="70%"
+         fxLayoutAlign="start end"
+         class="filter-text">
+         <form [formGroup]="pizzForm"
+         (ngSubmit)="onCreatePizza()">
+
+       <div fxLayout="row"
+            class="form-row">
+           <label class="lable">Select Pizza</label>
+           <select formControlName="pizzaId"
+                   (change)='onPizzaSelected($event)'>
+               <option disabled>Select pizza</option>
+               <option [value]="pizza.id"
+                       *ngFor="let pizza of pizzas">{{pizza.name}}</option>
+           </select>
+       </div>
+       <div fxLayout="row"
+            class="form-row">
+           <label class="lable"
+                  for="number">Number Of Pizza</label>
+           <input formControlName="numberOfPizza"
+                  id="number"
+                  type="number"
+                  (focusout)="onNumberOfPizza($event)"
+                  class="form-control">
+       </div>
+       <div fxLayout="row"
+            class="form-row">
+           <label class="lable">Toppings</label>
+           <select formControlName="toppingId"
+                   (change)='onToppingSelected($event)'>
+               <option disabled>Select toppings</option>
+               <option [value]="topping.id"
+                       *ngFor="let topping of toppings">{{topping.name}}</option>
+           </select>
+       </div>
+       <div fxLayout="row"
+            class="form-row">
+           <label class="lable">Size</label>
+           <select formControlName="sizeId"
+                   (change)='onSizeSelected($event)'>
+
+               <option disabled>Select Size</option>
+               <option [value]="size.id"
+                       *ngFor="let size of sizes">{{size.name}}</option>
+           </select>
+       </div>
+       <div fxLayout="row"
+            class="form-row">
+           <label class="lable">Crust</label>
+           <select formControlName="crustId"
+                   (change)='onCrustSelected($event)'>
+               <option disabled>Select Crust</option>
+               <option [value]="c.id"
+                       *ngFor="let c of crust">{{c.name}}</option>
+           </select>
+       </div>
+       <div fxLayout="row"
+            class="form-row">
+           <label class="lable">Sauce</label>
+           <select formControlName="sauceId"
+                   (change)='onSauceSelected($event)'>
+               <option disabled>Select Sauce</option>
+               <option [value]="s.id"
+                       *ngFor="let s of sauce">{{s.name}}</option>
+           </select>
+       </div>
+       <div fxLayout="row"
+            class="form-row">
+           <label class="lable">Cheese </label>
+           <input type="checkbox"
+                  formControlName="isAddCheese"
+                  (change)="onAddCheeseChange($event)" />
+       </div>
+       <div fxLayout="row"
+            class="form-row">
+           <label class="lable">Extra Cheese </label>
+           <input type="checkbox"
+                  formControlName="isAddExtraCheese"
+                  (change)="onAddExtraCheeseChange($event)" />
+       </div>
+       <button type="submit">Create Order</button>
+   </form>
+    </div>
+</div>
+
+<div fxLayout="row">
+    <div fxLayout="column">
+       
+    </div>
+    <div fxLayout="column"
+         class="container">
+        
+    </div>
+</div>
